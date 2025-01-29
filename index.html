@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💖</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background-color: pink;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+        }
+
+        .active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .hearts, .stickers, .sparkles {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            animation: float 5s infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+
+        #yesBtn, #noBtn {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            margin: 20px;
+        }
+
+        #noBtn {
+            background: gray;
+            position: relative;
+        }
+
+        #planBtn {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+
+        .valentine-text {
+            font-size: 2em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="page1" class="page active">
+        <h1>
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHExbnJwbXQwdmd4d29wY2tmaGgwNzhpYWxyaXBiamlycTJ2cDQwcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/s414bsxh6UPhf5ays8/giphy.gif" width="300"><br>
+            Will you be my Valentine? 💕
+        </h1>
+        <div class="btn-container">
+            <button id="yesBtn">Yes! 💖</button>
+            <button id="noBtn">No 😢</button>
+        </div>
+    </div>
+
+    <div id="page2" class="page">
+        <h1>
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGp1MWpjY2NyZHF2NzBrNnFtbGtqajh1Z21wdnR4MW12Z3htZnBoaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6EMxrp8dzvqOQiWTTk/giphy.gif" width="250"><br>
+            Yay! I love you! 🥰💘
+        </h1>
+        <button id="planBtn">Click to see our Valentine Plan 💝</button>
+    </div>
+
+    <div id="page3" class="page">
+        <h1 style="font-size: 3.5em;">Our Valentine's Plan 💝</h1>
+        <div>
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXV1MDk5MTlrZTMzN2N3ZTB4aW50YjFmMWh0MG51ZDVtNzU3MXUxNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rnxbFXu2vjZVSGoq02/giphy.gif" width="150">
+            <p class="valentine-text">✨ A good relaxation time</p>
+        </div>
+        <div>
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnRobG1oNXlidXg2bDNwcjU4emRncjF6MjJyOGlvNTlxOHVldWRrNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UZvzszZSBdT0Y/giphy.gif" width="150">
+            <p class="valentine-text">🔥 Some sexy time 😉</p>
+        </div>
+        <div>
+            <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWZjNG16angyeXllenozaTA1djd0ZHExeDdvdjJmcnc5bXBkNDNhZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/btbJLqOdzrGUIMT1wt/giphy.gif" width="150">
+            <p class="valentine-text">🎬 A nice movie before ending our night</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.add('active');
+            releaseStickers();
+            releaseSparkles();
+        });
+
+        document.getElementById('planBtn').addEventListener('click', function() {
+            document.getElementById('page2').classList.remove('active');
+            document.getElementById('page3').classList.add('active');
+            releaseStickers();
+            releaseSparkles();
+        });
+
+        document.getElementById('noBtn').addEventListener('mouseover', function() {
+            this.style.position = "absolute";
+            this.style.left = Math.random() * 80 + "vw";
+            this.style.top = Math.random() * 80 + "vh";
+        });
+
+        function releaseStickers() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const sticker = document.createElement('div');
+                    sticker.classList.add('stickers');
+                    sticker.style.left = Math.random() * 100 + 'vw';
+                    sticker.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    sticker.innerHTML = '<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExajU2Z295Nnp4cDFya295aWc0aTFjZXptbm5vMGh6YjF3ZzZqbmVudCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/ZSDEsrnLcsqR5W5qcc/giphy.gif" width="50">';
+                    document.body.appendChild(sticker);
+                }, i * 100);
+            }
+        }
+
+        function releaseSparkles() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.classList.add('sparkles');
+                    sparkle.style.left = Math.random() * 100 + 'vw';
+                    sparkle.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    sparkle.innerHTML = '<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHozYzhpNmJ4dmY4N3RyYzdrYjZrdWxjaXAxcmVqenNxazdhOXp2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/dkQ1CRCVHUaBi/giphy.gif" width="50">';
+                    document.body.appendChild(sparkle);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
